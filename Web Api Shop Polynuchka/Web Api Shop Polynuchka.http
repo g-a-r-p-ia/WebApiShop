@@ -1,0 +1,6 @@
+@Web_Api_Shop_Polynuchka_HostAddress = http://localhost:5160
+
+GET {{Web_Api_Shop_Polynuchka_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

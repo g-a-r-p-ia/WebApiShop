@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Користувачі</title>
+    <link rel="stylesheet" href="css/site.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('source/image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 800px;
+            height: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1, h3 {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .button {
+            background-color: #ff6600;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #cc5200;
+            }
+        h3 {
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 30px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #f0f0f0;
+            transition: border-color 0.3s ease;
+        }
+
+            input[type="text"]:focus {
+                border-color: #ff6600;
+                outline: none;
+            }
+
+        input[type="submit"], button {
+            background-color: #ff6600;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover, button:hover {
+                background-color: #cc5200;
+            }
+
+        .table-container {
+            width: 100%;
+            height: 500px;
+            overflow-y: auto;
+            border: #ffffff;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #555;
+        }
+
+        th {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        a {
+            cursor: pointer;
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+            a:hover {
+                text-decoration: underline;
+                color: #cc5200;
+            }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 300px;
+                height: 300px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .table-container {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Користувачі</h1>
+        <div class="navigation">
+            <a href="https://localhost:7212" class="button">Категорії</a>
+            <a href="orders.html" class="button">Замовлення</a>
+            <a href="users.html" class="button">Користувачі</a>
+        </div>
+        <h3>Додати користувача</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addUser()">
+            <input type="text" id="add-name" placeholder="Ім'я користувача">
+            <input type="text" id="add-login" placeholder="Логін">
+            <input type="text" id="add-password" placeholder="Пароль">
+            <input type="submit" value="Додати">
+        </form>
+
+        <div id="editUser" class="hidden">
+            <h3>Редагувати</h3>
+            <form action="javascript:void(0);" onsubmit="updateUser()">
+                <input type="hidden" id="edit-id">
+                <input type="text" id="edit-name">
+                <input type="text" id="edit-login">
+                <input type="text" id="edit-password">
+                <input type="submit" value="Зберегти">
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <p id="counter"></p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ім'я</th>
+                        <th>Логін</th>
+                        <th>Пароль</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="users"></tbody>
+            </table>
+        </div>
+        <script src="js/users.js"></script>
+        <script type="text/javascript">
+            getUsers();
+        </script>
+    </div>
+</body>
+</html>
